@@ -1,0 +1,153 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "74a20b0bc4eaeab33ab0b1df72ab1f2b",
+    "entities": [
+      {
+        "tableName": "courses",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `teacher` TEXT NOT NULL, `location` TEXT NOT NULL, `colorHex` TEXT NOT NULL, `note` TEXT NOT NULL, `source` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "teacher",
+            "columnName": "teacher",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "location",
+            "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "colorHex",
+            "columnName": "colorHex",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "meetings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `courseId` INTEGER NOT NULL, `weekday` INTEGER NOT NULL, `startMinutes` INTEGER, `endMinutes` INTEGER, `startSlotId` INTEGER, `endSlotId` INTEGER, `weekRule` TEXT NOT NULL, `dateStartEpochDay` INTEGER, `dateEndEpochDay` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "courseId",
+            "columnName": "courseId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weekday",
+            "columnName": "weekday",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startMinutes",
+            "columnName": "startMinutes",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "endMinutes",
+            "columnName": "endMinutes",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "startSlotId",
+            "columnName": "startSlotId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "endSlotId",
+            "columnName": "endSlotId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "weekRule",
+            "columnName": "weekRule",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateStartEpochDay",
+            "columnName": "dateStartEpochDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "dateEndEpochDay",
+            "columnName": "dateEndEpochDay",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_meetings_courseId",
+            "unique": false,
+            "columnNames": [
+              "courseId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_meetings_courseId` ON `${TABLE_NAME}` (`courseId`)"
+          },
+          {
+            "name": "index_meetings_weekday",
+            "unique": false,
+            "columnNames": [
+              "weekday"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_meetings_weekday` ON `${TABLE_NAME}` (`weekday`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '74a20b0bc4eaeab33ab0b1df72ab1f2b')"
+    ]
+  }
+}

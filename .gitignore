@@ -1,0 +1,24 @@
+# Gradle and Android build output
+.gradle/
+.kotlin/
+build/
+**/build/
+captures/
+*.hprof
+
+# Local machine configuration
+local.properties
+.idea/
+*.iml
+
+# Generated or signed binaries stay in the local delivery archive
+*.apk
+*.aab
+*.apks
+*.jks
+*.keystore
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
